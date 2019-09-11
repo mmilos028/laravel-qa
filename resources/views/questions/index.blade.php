@@ -4,13 +4,24 @@
 <div class="container">
     <div class="row justify-content-center">
         
-        <div class="col-md-8">
+        <div class="col-md-12">
         	<div class="card">
         		<div class="card-header">All Questions</div>
         		
         		<div class="card-body">
-        			@foreach ($questions as $question)
+        			@foreach ($questions as $question)        				
                     	<div class="media">
+                    		<div class="d-flex flex-column counters">
+            					<div class="vote">
+            						<strong>{{ $question->votes }}</strong> {{ Str::plural('vote', $question->votes) }}
+            					</div>
+            					<div class="status">
+            						<strong>{{ $question->answers }}</strong> {{ Str::plural('answer', $question->votes) }}
+            					</div>
+            					<div class="view">
+            						{{ $question->views . " " . Str::plural('view', $question->views) }}
+            					</div>
+            				</div>
                     		<div class="media-body">
                     			<h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
                     			<p class="lead">
