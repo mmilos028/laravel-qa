@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
         
         // $this->call(UsersTableSeeder::class);
         //factory(App\User::class, 3)->create()->
-        factory(App\User::class, 3)->create()->each( function(App\User $u, $key){
+        factory(App\User::class, 10)->create()->each( function(App\User $u, $key){
             /**
              * @var $u App\User
              */
             $u->questions()
                 ->saveMany(
-                    factory(App\Question::class, rand(1, 5))->make()
+                    factory(App\Question::class, rand(10, 50))->make()
                     );
             
         });
