@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -84,10 +90,14 @@ class QuestionsController extends Controller
         abort(403, "Access denied");
         */
         
+        $this->authorize("update", $question);
+        
         if(\Gate::denies('update-question', $question))
         {
             abort(403, "Access denied");
         }
+        
+        
         return view("questions.edit", compact('question'));
     }
 
@@ -100,6 +110,8 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
+        $this->authorize("update", $question);
+        
         if(\Gate::denies('update-question', $question))
         {
             abort(403, "Access denied");
@@ -118,6 +130,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        $this->authorize("delete", $question);
         
         if(\Gate::denies('delete-question', $question))
         {

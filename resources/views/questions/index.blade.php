@@ -38,13 +38,13 @@
                     			<div class="d-flex align-items-center">
                     				<h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
                     				<div class="ml-auto">
-                    					@if(Auth::user()->can('update-question', $question))
+                    					@if(Auth::user()->can('update-question', $question) && Auth::user()->can('update', $question))
                     					<a href="{{ route('questions.edit', $question->id) }}" class="btn btn-sm btn-outline-info">
                     						Edit
                     					</a>
                     					@endif
                     					
-                    					@if(Auth::user()->can('delete-question', $question))
+                    					@if(Auth::user()->can('delete-question', $question) && Auth::user()->can('delete', $question))
                     					<form class="form-delete" method="post" action="{{ route('questions.destroy', $question->id) }}">
                     						@method('DELETE')
                     						@csrf
