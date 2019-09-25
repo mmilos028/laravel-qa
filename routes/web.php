@@ -35,3 +35,5 @@ Route::resource('questions.answers', 'AnwsersController')
     ->except(['index', 'create', 'show']);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/questions/{question}/vote', 'VoteQuestionController');
