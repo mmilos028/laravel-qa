@@ -1,3 +1,4 @@
+@if($answersCount > 0)
 <div class="row mt-4">
     <div class="col-md-12">
     	<div class="card">
@@ -29,8 +30,7 @@
             				<form id="down-vote-answer-{{ $answer->id}}" action="{{ url('/') }}/answers/{{ $answer->id }}/vote" method="POST" style="display: none;">
             					@csrf
             					<input type="hidden" name="vote" value="-1">            					
-            				</form>
-    					
+            				</form>    					
     				            				
             				@can('accept', $answer)
                 				<a title="Mark this answer as best answer" 
@@ -87,6 +87,6 @@
     			@endforeach
     		</div>
     	</div>
-    </div>
-    
+    </div>    
 </div>
+@endif
