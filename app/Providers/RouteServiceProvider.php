@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
             }])->where('slug', $slug)->first();
             */
             
-            $question = Question::with('answers.user')->where('slug', $slug)->first();
+            $question = Question::with(['user', 'answers.user'])->where('slug', $slug)->first();
             
             
             return $question ? $question : abort(404);
