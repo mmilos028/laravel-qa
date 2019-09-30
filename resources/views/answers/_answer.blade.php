@@ -14,7 +14,6 @@
     		</form>
     		<div v-else>
     			<div v-html="bodyHtml"></div>
-        		{!! $answer->body_html !!}
         		<div class="row">
         			<div class="col-4">
         				<div class="ml-auto">
@@ -28,7 +27,7 @@
         					<form class="form-delete" method="post" action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}">
         						@method('DELETE')
         						@csrf
-        						<button @click="destroy" class="btn btn-sm btn-outline-danger">
+        						<button @click.prevent="destroy" class="btn btn-sm btn-outline-danger">
         							Delete
         						</button>
         					</form>
